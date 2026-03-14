@@ -1,0 +1,21 @@
+.tasker-loading {
+  font-size: 3rem;
+  background-color: brown;
+  color: darkorange;
+}
+
+.toast-container {
+  position: absolute;
+  align-self: center;
+  max-width: 60dvw;
+  top: 10%;
+
+  .toast {
+    background-color: #0000002d;
+    color: #141414;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    text-align: center;
+  }
+}

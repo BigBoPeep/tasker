@@ -1,26 +1,24 @@
 import { dbi } from "../Utils/dbi.config";
 
-export class TaskerCore {
+export class Tasker {
   #workspaces;
   #projects;
   #tasks;
-  #errorHandler;
 
   constructor(savedData, errorHandler) {
     this.#workspaces = new Map(savedData.workspaces.map((ws) => [ws.id, ws]));
     this.#projects = new Map(savedData.projects.map((proj) => [proj.id, proj]));
     this.#tasks = new Map(savedData.tasks.map((task) => [task.id, task]));
-    this.#errorHandler = errorHandler;
   }
 
-  async init(errorHandler) {
+  static async init(errorHandler) {
     const savedData = {
       workspaces: await dbi.getAll("workspaces"),
       projects: await dbi.getAll("projects"),
       tasks: await dbi.getAll("tasks"),
     };
 
-    return new TaskerCore(savedData, errorHandler);
+    return new Tasker(savedData);
   }
 
   get workspaces() {

@@ -1,0 +1,16 @@
+.toast {
+  --fade-duration: 1s;
+  display: none;
+  opacity: 0;
+  transition:
+    opacity var(--fade-duration) ease-out allow-discrete,
+    display var(--fade-duration) ease-out allow-discrete;
+}
+.toast.visible {
+  display: block;
+  opacity: 1;
+
+  @starting-style {
+    opacity: 0;
+  }
+}
