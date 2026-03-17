@@ -1,4 +1,4 @@
-class Task {
+export class Task {
   #id;
   #title;
   #desc;
@@ -79,5 +79,15 @@ export class Workspace {
 
   deleteProject(projectID) {
     this.#projects.delete(projectID);
+  }
+
+  toObject() {
+    return {
+      id: this.#id,
+      created: this.created,
+      title: this.title,
+      desc: this.desc,
+      projects: this.#projects,
+    };
   }
 }

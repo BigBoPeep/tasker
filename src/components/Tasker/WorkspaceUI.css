@@ -1,0 +1,119 @@
+.tasker-workspaceui {
+  background-color: #0000002d;
+  width: 100%;
+  height: 100%;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+  gap: 0.5rem;
+
+  .workspaceui-wsentry {
+    width: 100%;
+    justify-items: center;
+
+    .entry-marker {
+      transition: transform 0.3s ease-in;
+      stroke-width: 0.1rem;
+    }
+
+    .wsentry-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 0 0.5rem;
+      font-weight: 700;
+
+      .workspaceui-edit-btn {
+        border-radius: 3px;
+
+        svg {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+    }
+
+    .wsentry-addproj-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.3rem 0.5rem;
+      font-size: var(--fs-sm);
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+        stroke-width: 0.2rem;
+      }
+    }
+  }
+  .workspaceui-wsentry:open {
+    .entry-marker {
+      transform: rotate(90deg);
+    }
+  }
+
+  .workspaceui-addws {
+    background-color: #0000002d;
+    position: absolute;
+    inset: 0;
+    width: min-content;
+    height: min-content;
+    margin: auto;
+    display: none;
+    opacity: 0;
+    transition:
+      opacity 0.5s ease-out,
+      display 0.5s ease-out allow-discrete;
+
+    .wsadd-titlebar {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .workspaceui-addws.open {
+    display: block;
+    opacity: 1;
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  .workspaceui-edit {
+    background-color: #0000002d;
+    position: absolute;
+    inset: 0;
+    width: min-content;
+    height: min-content;
+    margin: auto;
+    display: none;
+    flex-direction: column;
+    opacity: 0;
+    transition:
+      opacity 0.5s ease-out,
+      display 0.5s ease-out allow-discrete;
+
+    .wsedit-titlebar {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .workspaceui-edit.open {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+      display: flex;
+    }
+  }
+}

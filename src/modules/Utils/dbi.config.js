@@ -2,14 +2,14 @@ import DBI from "./dbi";
 
 const CONFIG = {
   DB_NAME: "Tasker",
-  VERSION: 1,
+  VERSION: 2,
   STORES: ["prefs", "tasks", "projects", "workspaces"],
   KEYPATHS: {
-    default: { autoInc: true },
-    prefs: { keypath: "key", autoInc: false },
-    tasks: { keypath: "id", autoInc: false },
-    projects: { keypath: "id", autoInc: false },
-    workspaces: { keypath: "id", autoInc: false },
+    default: { autoIncrement: true },
+    prefs: { keyPath: "key", autoIncrement: false },
+    tasks: { keyPath: "id", autoIncrement: false },
+    projects: { keyPath: "id", autoIncrement: false },
+    workspaces: { keyPath: "id", autoIncrement: false },
   },
   INDEXES: {},
 };
