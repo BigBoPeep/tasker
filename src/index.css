@@ -31,7 +31,7 @@
   --fs-xxl: clamp(2.44rem, 1.08vi + 2.17rem, 3.47rem);
   --fs-xxxl: clamp(3.05rem, 1.38vi + 2.71rem, 4.37rem);
 
-  font: 18px var(--sans);
+  font: 16px var(--sans);
   color-scheme: light dark;
   color: var(--text);
   background: var(--bg);
@@ -41,7 +41,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   @media (max-width: 1024px) {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -55,6 +55,8 @@
 
 #root {
   position: relative;
+  width: 100dvw;
+  height: 100dvh;
 }
 
 body {
@@ -64,10 +66,9 @@ body {
 button {
   cursor: pointer;
   display: flex;
+  gap: 0.5rem;
   justify-content: center;
   align-items: center;
-  padding: 2px;
-  border-radius: 3px;
-  width: fit-content;
-  height: fit-content;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
 }

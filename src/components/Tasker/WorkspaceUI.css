@@ -1,119 +1,84 @@
-.tasker-workspaceui {
-  background-color: #0000002d;
+html {
+  interpolate-size: allow-keywords;
+}
+
+.workspaceui {
   width: 100%;
-  height: 100%;
-  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 1rem;
   gap: 0.5rem;
 
-  .workspaceui-wsentry {
-    width: 100%;
-    justify-items: center;
-
-    .entry-marker {
-      transition: transform 0.3s ease-in;
-      stroke-width: 0.1rem;
+  .ws-new-btn {
+    .icon {
+      width: 1.2rem;
     }
+  }
 
-    .wsentry-header {
-      width: 100%;
+  .ws-entry {
+    background-color: #00000033;
+    justify-items: center;
+    width: 100%;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+
+    .ws-header {
       display: flex;
-      justify-content: space-between;
       cursor: pointer;
-      padding: 0 0.5rem;
-      font-weight: 700;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0.3rem;
 
-      .workspaceui-edit-btn {
-        border-radius: 3px;
+      .marker {
+        width: 1.2rem;
+        stroke-width: 0.1rem;
+        transform: rotate(-45deg);
+        transition: transform 0.25s ease-in;
+      }
 
-        svg {
-          width: 1rem;
-          height: 1rem;
+      .ws-edit-btn {
+        width: 1.4rem;
+        height: 1.4rem;
+
+        .icon {
+          width: 100%;
+          height: 100%;
         }
       }
     }
 
-    .wsentry-addproj-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      padding: 0.3rem 0.5rem;
-      font-size: var(--fs-sm);
-
-      svg {
-        width: 1rem;
-        height: 1rem;
-        stroke-width: 0.2rem;
+    .proj-entry {
+      background-color: #00000033;
+      width: 100%;
+      padding: 1rem 0.5rem;
+    }
+    .proj-entry:first-of-type {
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+    .proj-entry:last-of-type {
+      border-radius: 0 0 0.5rem 0.5rem;
+    }
+    .proj-entry:only-of-type {
+      border-radius: 0.5rem;
+    }
+  }
+  .ws-entry::details-content {
+    height: 0;
+    overflow: hidden;
+    transition:
+      height 0.25s ease-in,
+      content-visibility 0.25s allow-discrete;
+  }
+  .ws-entry[open] {
+    .ws-header {
+      .marker {
+        transform: rotate(0deg);
       }
     }
   }
-  .workspaceui-wsentry:open {
-    .entry-marker {
-      transform: rotate(90deg);
-    }
-  }
-
-  .workspaceui-addws {
-    background-color: #0000002d;
-    position: absolute;
-    inset: 0;
-    width: min-content;
-    height: min-content;
-    margin: auto;
-    display: none;
-    opacity: 0;
-    transition:
-      opacity 0.5s ease-out,
-      display 0.5s ease-out allow-discrete;
-
-    .wsadd-titlebar {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-  .workspaceui-addws.open {
-    display: block;
-    opacity: 1;
-    @starting-style {
-      opacity: 0;
-    }
-  }
-
-  .workspaceui-edit {
-    background-color: #0000002d;
-    position: absolute;
-    inset: 0;
-    width: min-content;
-    height: min-content;
-    margin: auto;
-    display: none;
-    flex-direction: column;
-    opacity: 0;
-    transition:
-      opacity 0.5s ease-out,
-      display 0.5s ease-out allow-discrete;
-
-    .wsedit-titlebar {
-      display: flex;
-      justify-content: space-between;
-    }
-  }
-  .workspaceui-edit.open {
-    display: flex;
-    flex-direction: column;
-    opacity: 1;
-
-    @starting-style {
-      opacity: 0;
-      display: flex;
-    }
+  .ws-entry[open]::details-content {
+    height: auto;
   }
 }

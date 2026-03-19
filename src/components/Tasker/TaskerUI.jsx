@@ -1,126 +1,190 @@
 import "./TaskerUI.css";
 import React, { useState, useEffect, useRef } from "react";
+import { useImmer } from "use-immer";
+import { enableMapSet } from "immer";
 import { Tasker } from "../../modules/tasker/tasker";
 import { useToast } from "../ToastContext/ToastContext";
 import WorkspaceUI from "./WorkspaceUI";
 import ProjectUI from "./ProjectUI";
-import { SquareX, SquarePlus } from "lucide-react";
+import TaskUI from "./TaskUI";
 
-const testProj = {
-  id: 49382881,
-  title: "Project Title #1",
-  desc: "A short description about Project Title #1",
-  created: new Date(),
-  deadline: new Date("2026-03-25T14:00Z"),
-  tasks: new Map([
-    [
-      3245,
-      {
-        id: 3245,
-        title: "Test Task #1",
-        desc: "Another short description. This time for Test Task #1.",
-        created: new Date(),
-        deadline: new Date("2026-03-24T12:00Z"),
-      },
-    ],
-    [
-      4322,
-      {
-        id: 4322,
-        title: "Test Task #2",
-        desc: "Short description number whatever, for Test Task #2",
-        created: new Date(),
-        deadline: new Date("2026-03-22T08:00Z"),
-      },
-    ],
-  ]),
-};
+const testData = [
+  {
+    id: 2938583,
+    title: "Test Workspace #1",
+    desc: "A short description about Test Workspace #1 and its goal.",
+    projects: new Map([
+      [
+        395960,
+        {
+          id: 395960,
+          title: "Test Project #1",
+          desc: "A short description about Test Project #1 and its goal.",
+          created: new Date("2026-02-12T08:15Z"),
+          deadline: new Date("2026-03-22T08:00Z"),
+          completed: false,
+          tasks: new Map([
+            [
+              395919,
+              {
+                id: 395919,
+                title: "Test Task #1",
+                desc: "A description about Test Task #1 and maybe how to complete it.",
+                created: new Date("2026-02-12T08:25Z"),
+                deadline: new Date("2026-03-30T10:00Z"),
+                completed: false,
+              },
+            ],
+            [
+              465581,
+              {
+                id: 465581,
+                title: "Test Task #2",
+                desc: "A description about Test Task #2 and maybe how to complete it.",
+                created: new Date("2026-02-12T18:25Z"),
+                deadline: new Date("2026-03-30T11:00Z"),
+                completed: true,
+              },
+            ],
+          ]),
+        },
+      ],
+      [
+        789945,
+        {
+          id: 789945,
+          title: "Test Project #2",
+          desc: "A short description about Test Project #2 and its goal.",
+          created: new Date("2026-01-12T07:15Z"),
+          deadline: new Date("2026-05-22T08:00Z"),
+          completed: false,
+          tasks: new Map([
+            [
+              395919,
+              {
+                id: 395919,
+                title: "Test Task #3",
+                desc: "A description about Test Task #3 and maybe how to complete it.",
+                created: new Date("2026-02-12T08:25Z"),
+                deadline: new Date("2026-03-30T10:00Z"),
+                completed: true,
+              },
+            ],
+            [
+              465581,
+              {
+                id: 465581,
+                title: "Test Task #4",
+                desc: "A description about Test Task #4 and maybe how to complete it.",
+                created: new Date("2026-02-12T18:25Z"),
+                deadline: new Date("2026-03-30T11:00Z"),
+                completed: false,
+              },
+            ],
+          ]),
+        },
+      ],
+    ]),
+  },
+  {
+    id: 123445,
+    title: "Test Workspace #2",
+    desc: "A description about Test Workspace #2.",
+    projects: new Map([
+      [
+        994553,
+        {
+          id: 994553,
+          title: "Test Project #3",
+          desc: "A short description about Test Project #3",
+          created: new Date("2026-01-12T07:15Z"),
+          deadline: new Date("2026-05-22T08:00Z"),
+          completed: false,
+          tasks: new Map([
+            [
+              344456947,
+              {
+                id: 344456947,
+                title: "Test Task #5",
+                desc: "A description about Test Task #5 and maybe how to complete it.",
+                created: new Date("2026-02-16T08:25Z"),
+                deadline: new Date("2026-07-30T10:00Z"),
+                completed: true,
+              },
+            ],
+          ]),
+        },
+      ],
+    ]),
+  },
+];
 
 export default function TaskerUI() {
+  enableMapSet();
   const [tasker, setTasker] = useState(null);
-  const [selectedProj, setSelectedProj] = useState(testProj);
-  const [addProjOpen, setAddProjOpen] = useState(false);
+  const [workspaces, setWorkspace] = useImmer(new Map());
+  const [selectedWsID, setSelectedWsID] = useState(null);
+  const [selectedProjID, setSelectedProjID] = useState(null);
   const notify = useToast();
 
   useEffect(() => {
     let cancelled = false;
-    const init = async () => {
-      const inst = await Tasker.init(notify);
-      if (!cancelled) setTasker(inst);
-    };
-    init();
+    (async () => {
+      const ti = await Tasker.init(notify);
+      if (!cancelled) {
+        setTasker(ti);
+        testData.forEach((ws) => {
+          setWorkspace((draft) => {
+            draft.set(ws.id, ws);
+          });
+        });
+        // setWorkspaces((draft) => {
+        //   draft = tasker.workspaces;
+        // });
+        // setProjects((draft) => {
+        //   draft = tasker.projects;
+        // });
+        // setTasks((draft) => {
+        //   draft = tasker.tasks;
+        // });
+      }
+    })();
 
     return () => {
       cancelled = true;
     };
   }, []);
 
-  if (!tasker) return <div className="tasker-loading">Loading...</div>;
+  if (!tasker) return <div className="loading">Loading Tasker...</div>;
 
   return (
     <div className="tasker">
-      <div className="tasker-sidebar">
-        <img className="tasker-logo" src="/logo.webp" alt="Tasker Logo" />
-        <button type="button" className="tasker-settings-btn">
-          Settings
-        </button>
+      <div className="sidebar">
+        <img src="/logo.webp" alt="Tasker Logo" className="logo" />
+        <button>Settings</button>
         <WorkspaceUI
-          tasker={tasker}
-          onSelectProj={setSelectedProj}
-          onOpenAddProj={() => setAddProjOpen(true)}
+          workspaces={workspaces}
+          onProjSelected={handleProjSelect}
         />
       </div>
-      <div className="tasker-content">
-        <ProjectUI tasker={tasker} project={selectedProj} />
-        <TaskUI tasker={tasker} />
+      <div className="content">
+        <ProjectUI
+          workspaces={workspaces}
+          selectedProjID={selectedProjID}
+          selectedWsID={selectedWsID}
+        />
+        <TaskUI
+          workspaces={workspaces}
+          selectedProjID={selectedProjID}
+          selectedWsID={selectedWsID}
+        />
       </div>
       <footer>Copyright © 2026 Lane Robey</footer>
-      <AddProjectUI open={addProjOpen} onClose={() => setAddProjOpen(false)} />
     </div>
   );
-}
 
-function AddProjectUI({ open, onClose }) {
-  const title = useRef(null);
-  const desc = useRef(null);
-  const deadline = useRef(null);
-
-  return (
-    <div className={`tasker-addproj${open ? " open" : ""}`}>
-      <div className="addproj-titlebar">
-        New Project
-        <button onClick={onClose}>
-          <SquareX />
-        </button>
-      </div>
-      <input
-        type="text"
-        name="title"
-        id="addproj-input-title"
-        ref={title}
-        placeholder="Title"
-      />
-      <input
-        type="text"
-        name="desc"
-        id="addproj-input-desc"
-        ref={desc}
-        placeholder="Description"
-      />
-      <label>Due By</label>
-      <input
-        type="datetime-local"
-        name="deadline"
-        id="addproj-input-deadline"
-        ref={deadline}
-      />
-      <button>
-        <SquarePlus />
-      </button>
-    </div>
-  );
-}
-
-function TaskUI({ tasker }) {
-  return <div className="tasker-taskui"></div>;
+  function handleProjSelect(workspaceID, projectID) {
+    setSelectedWsID(workspaceID);
+    setSelectedProjID(projectID);
+  }
 }

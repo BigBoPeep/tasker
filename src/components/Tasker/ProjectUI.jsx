@@ -1,30 +1,39 @@
 import "./ProjectUI.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { SquarePen } from "lucide-react";
 
-export default function ProjectUI({ tasker, project }) {
+export default function ProjectUI({
+  workspaces,
+  selectedProjID,
+  selectedWsID,
+}) {
+  let project = null;
+  if (selectedWsID && selectedProjID) {
+    const ws = workspaces.get(selectedWsID);
+    project = ws.projects.get(selectedProjID);
+  }
+
+  if (!project)
+    return <div className="projectui-loading">No Project Selected</div>;
+
   return (
-    <div className="tasker-projectui">
-      <div className="projectui-titlebar">
+    <div className="projectui">
+      <div className="title-bar">
         {project.title}
-        <button className="projectui-editproj-btn">
+        <button>
           <SquarePen />
         </button>
       </div>
-      <p className="deadline">
+      <div className="deadline">
         {`Due: `}
-        <span className="date">
-          {format(project.deadline, "EEE, MMM do y '@' h:mmaaa")}
-        </span>
-      </p>
-      <p className="description">{project.desc}</p>
-      <p className="created">
+        <span>{format(project.deadline, `EEE, MMM do ''yy 'at' h:mmaaa`)}</span>
+      </div>
+      <div className="desc">{project.desc}</div>
+      <div className="created">
         {`Created: `}
-        <span className="date">
-          {format(project.created, "h:mmaaa EEE, MMM do y")}
-        </span>
-      </p>
+        <span>{format(project.created, `MM/dd/yyyy h:mmaaa`)}</span>
+      </div>
     </div>
   );
 }
