@@ -1,10 +1,10 @@
-import TaskerUI from "./components/Tasker/TaskerUI";
+import Tasker from "./components/Tasker/Tasker";
 import { ToastProvider } from "./components/ToastContext/ToastContext";
 
 function App() {
   return (
     <ToastProvider>
-      <TaskerUI />
+      <Tasker />
     </ToastProvider>
   );
 }

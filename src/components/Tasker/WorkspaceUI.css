@@ -9,21 +9,72 @@ html {
   align-items: center;
   gap: 0.5rem;
 
-  .ws-new-btn {
-    .icon {
-      width: 1.2rem;
+  details {
+    background-color: #00000033;
+    width: 100%;
+    border-radius: 0.5rem;
+
+    summary {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0;
+      cursor: pointer;
+
+      .marker {
+        transition: transform 0.25s ease-in-out;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.4rem;
+        border-radius: 0.2rem;
+        resize: none;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        svg {
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+    }
+  }
+  .workspace-add[open] {
+    .marker {
+      transform: rotate(90deg);
+    }
+  }
+  .project-add[open] {
+    .marker {
+      transform: rotate(90deg);
     }
   }
 
-  .ws-entry {
+  .workspace-entry {
     background-color: #00000033;
     justify-items: center;
     width: 100%;
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
+    padding: 0.5rem;
 
-    .ws-header {
+    .workspace-header {
       display: flex;
       cursor: pointer;
       justify-content: space-between;
@@ -35,50 +86,57 @@ html {
         width: 1.2rem;
         stroke-width: 0.1rem;
         transform: rotate(-45deg);
-        transition: transform 0.25s ease-in;
+        transition: transform 0.25s ease-in-out;
       }
 
-      .ws-edit-btn {
-        width: 1.4rem;
-        height: 1.4rem;
-
-        .icon {
-          width: 100%;
-          height: 100%;
-        }
+      .workspace-edit-btn {
+        width: 1.5rem;
+        height: 1.5rem;
       }
     }
 
-    .proj-entry {
+    .project-entry {
       background-color: #00000033;
       width: 100%;
       padding: 1rem 0.5rem;
-    }
-    .proj-entry:first-of-type {
-      border-radius: 0.5rem 0.5rem 0 0;
-    }
-    .proj-entry:last-of-type {
-      border-radius: 0 0 0.5rem 0.5rem;
-    }
-    .proj-entry:only-of-type {
       border-radius: 0.5rem;
+      margin: 0.5rem 0;
+    }
+    .project-entry + .project-entry {
+    }
+
+    .project-add {
+      width: 100%;
+      margin-top: 1rem;
+      .project-add-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+      }
     }
   }
-  .ws-entry::details-content {
-    height: 0;
-    overflow: hidden;
-    transition:
-      height 0.25s ease-in,
-      content-visibility 0.25s allow-discrete;
-  }
-  .ws-entry[open] {
-    .ws-header {
+  .workspace-entry[open] {
+    .workspace-header {
       .marker {
         transform: rotate(0deg);
       }
     }
   }
-  .ws-entry[open]::details-content {
-    height: auto;
-  }
+}
+
+.workspace-entry::details-content,
+.workspace-add::details-content,
+.project-add::details-content {
+  height: 0;
+  overflow: hidden;
+  transition:
+    height 0.25s ease-in-out,
+    content-visibility 0.25s allow-discrete;
+}
+.workspace-entry[open]::details-content,
+.workspace-add[open]::details-content,
+.project-add[open]::details-content {
+  height: auto;
 }
