@@ -1,23 +1,56 @@
 @import "tailwindcss";
 
+@layer base {
+  button {
+    @apply rounded-md p-1 px-2 flex items-center justify-center gap-2 
+      bg-(--color-btn) cursor-pointer outline-1 outline-btn/70 
+      shadow-btn hover:shadow-btn-hover 
+      shadow-black/20 dark:shadow-black/40;
+  }
+
+  input,
+  textarea {
+    @apply rounded-md bg-(--color-input) p-1 px-2;
+  }
+
+  * {
+    color: var(--color-text);
+  }
+}
+
 @theme inline {
-  --color-page: var(--color-olive-200);
-  --color-btn: var(--color-neutral-600);
+  --color-pri: var(--color-olive-200);
+  --color-sec: var(--color-neutral-600);
+  --color-brand: var(--color-red-900);
+  --color-text: var(--color-olive-900);
+
+  --color-tooltip-bg: var(--color-orange-800);
+  --color-tooltip-text: var(--color-red-100);
+  --color-input: var(--color-overlay-1);
+  --color-btn: var(--color-stone-300);
+  --color-overlay-1: rgb(0, 0, 0, 0.15);
+  --color-overlay-2: rgb(0, 0, 0, 0.25);
+  --color-overlay-3: rgb(0, 0, 0, 0.4);
 
   --ease-bounce: cubic-bezier(0.34, 1.26, 0.64, 1);
+  --shadow-btn: inset 0 0 20px 0, 0 2px 2px 1px;
+  --shadow-btn-hover: inset 0 0 20px 3px, 0 2px 2px 1px;
 }
 
 @media (prefers-color-scheme: dark) {
-  @theme inline {
-    --color-page: var(--color-olive-800);
-    --color-btn: var(--color-neutral-400);
+  html {
+    --color-pri: var(--color-olive-800);
+    --color-sec: var(--color-neutral-400);
+    --color-text: var(--color-olive-300);
+
+    --color-btn: var(--color-olive-600);
   }
 }
 
 [data-theme="ozark"] {
-  --color-page: var(--color-olive-200);
+  --color-pri: var(--color-olive-200);
 
   @media (prefers-color-scheme: dark) {
-    --color-page: var(--color-stone-800);
+    --color-pri: var(--color-stone-800);
   }
 }

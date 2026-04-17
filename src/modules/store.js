@@ -35,14 +35,6 @@ function load() {
   }
 }
 
-export const workspaces = signal(load().workspaces);
-export const projects = signal(load().projects);
-export const tasks = signal(load().tasks);
-export const settings = signal(load().settings);
-
-export const activeWorkspaceID = signal(null);
-export const activeProjectID = signal(null);
-
 function persist() {
   localStorage.setItem(
     STORE_KEY,
@@ -54,6 +46,16 @@ function persist() {
     }),
   );
 }
+
+export const workspaces = signal(load().workspaces);
+export const projects = signal(load().projects);
+export const tasks = signal(load().tasks);
+export const settings = signal(load().settings);
+
+export const activeWorkspaceID = signal(null);
+export const activeProjectID = signal(null);
+export const modalState = signal(null);
+export const modalVisible = signal(false);
 
 export const activeProjects = computed(() =>
   Object.values(projects.value).filter(
@@ -68,10 +70,11 @@ export const activeTasks = computed(() =>
 );
 
 export const projectsByWorkspace = computed(() => {
-  const grouped = {};
+  const grouped = Object.fromEntries(
+    Object.keys(workspaces.value).map((id) => [id, []]),
+  );
   for (const proj of Object.values(projects.value)) {
-    const list = (grouped[proj.workspaceID] ??= []);
-    list.push(proj);
+    grouped[proj.workspaceID]?.push(proj);
   }
   return grouped;
 });
@@ -146,4 +149,18 @@ export function deleteWorkspace(id) {
   delete wses[id];
   workspaces.value = wses;
   persist();
+}
+
+export function openModal(type, data = null) {
+  modalState.value = { type, data };
+  requestAnimationFrame(() => {
+    modalVisible.value = true;
+  });
+}
+
+export function closeModal() {
+  modalVisible.value = false;
+  setTimeout(() => {
+    modalState.value = null;
+  }, 500);
 }
