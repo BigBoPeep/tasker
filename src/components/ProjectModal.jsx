@@ -31,7 +31,7 @@ export default function ProjectModal({ data }) {
       addToast("Project deadline required", "warning");
       return;
     }
-    data
+    data.id
       ? updateProject(data.id, {
           title: title.value,
           desc: desc.value,

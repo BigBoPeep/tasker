@@ -10,6 +10,8 @@ function load() {
       tasks: {},
       settings: { ...DEFAULT_SETTINGS },
     };
+    if (saved.settings.schemeVer !== DEFAULT_SETTINGS.schemeVer)
+      saved.settings = { ...DEFAULT_SETTINGS };
     return {
       workspaces: Object.fromEntries(
         Object.values(saved.workspaces).map((ws) => [ws.id, new Workspace(ws)]),
@@ -81,6 +83,16 @@ export const projectsByWorkspace = computed(() => {
   return grouped;
 });
 
+export const tasksByProject = computed(() => {
+  const grouped = Object.fromEntries(
+    Object.keys(projects.value).map((id) => [id, []]),
+  );
+  for (const task of Object.values(tasks.value)) {
+    grouped[task.projectID]?.push(task);
+  }
+  return grouped;
+});
+
 export function addTask(title, desc, deadline, completed, projectID) {
   const newTask = new Task({ title, desc, deadline, completed, projectID });
   tasks.value = {
@@ -129,8 +141,10 @@ export function updateProject(id, patch) {
 }
 
 export function deleteProject(id) {
+  if (id === activeProjectID.value) activeProjectID.value = null;
   const projs = { ...projects.value };
   delete projs[id];
+  Object.keys(tasksByProject.value[id]).forEach((taskID) => deleteTask(taskID));
   projects.value = projs;
   persist();
 }
@@ -155,6 +169,9 @@ export function updateWorkspace(id, title) {
 export function deleteWorkspace(id) {
   const wses = { ...workspaces.value };
   delete wses[id];
+  Object.keys(projectsByWorkspace.value[id]).forEach((projID) =>
+    deleteProject(projID),
+  );
   workspaces.value = wses;
   persist();
 }

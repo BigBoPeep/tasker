@@ -1,11 +1,16 @@
+import { useSignals } from "@preact/signals-react/runtime";
 import Sidebar from "./components/Sidebar";
 import WorkspaceList from "./components/WorkspaceList";
+import ProjectView from "./components/ProjectView";
+import Landing from "./components/Landing";
 import ModalRouter from "./components/ModalRouter";
 import ToastList from "./components/ToastList";
-import { addWorkspace, sidebarOpen } from "./modules/store";
+import { addWorkspace, sidebarOpen, activeProjectID } from "./modules/store";
 import { Cog } from "lucide-react";
 
 function App() {
+  useSignals();
+
   return (
     <>
       <ModalRouter />
@@ -22,7 +27,7 @@ function App() {
             </button>
             <WorkspaceList />
           </Sidebar>
-          Content
+          {activeProjectID.value ? <ProjectView /> : <Landing />}
         </div>
         <footer>Copyright © 2026 Lane Robey</footer>
       </div>
