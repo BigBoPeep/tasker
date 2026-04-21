@@ -15,9 +15,9 @@ export default function Dropdown({
 
   return (
     <div
-      className={`bg-black/20 relative group/drop rounded-md hover:rounded-b-none 
+      className={`relative group/drop rounded-md hover:rounded-b-none 
       transition-all transform-gpu duration-300 ease-bounce cursor-default 
-      hover:z-50`}
+      hover:z-50 shadow-btn/20 ${className}`}
     >
       <div className="flex justify-between items-center px-2 py-1">
         <p className="w-full whitespace-nowrap text-ellipsis overflow-hidden">
@@ -25,7 +25,7 @@ export default function Dropdown({
         </p>
         <div className="relative">
           <Square
-            className="stroke-1 stroke-transparent group-hover/drop:stroke-(--color-text) 
+            className="stroke-transparent group-hover/drop:stroke-(--color-text) 
               transition-all duration-300 ease-bounce shrink-0"
           />
           <ChevronLeft
@@ -35,16 +35,17 @@ export default function Dropdown({
         </div>
       </div>
       <div
-        className="absolute bg-inherit w-full py-1 scale-y-0 scale-x-90 rounded-b-md 
+        className="absolute bg-inherit w-full p-2 scale-y-0 scale-x-90 rounded-b-md 
           group-hover/drop:scale-y-100 group-hover/drop:scale-x-100 flex flex-col 
-          origin-top transition-transform duration-300 ease-bounce"
+          origin-top transition-transform duration-300 ease-bounce shadow-btn/20 
+          group-hover/drop:z-50 gap-1"
       >
         {Object.entries(options).map(([opt, text]) => {
           return (
             <div
               key={opt}
               className={`flex cursor-pointer py-1 px-2 overflow-hidden justify-between 
-                hover:bg-(--color-overlay-1)
+                hover:bg-(--color-overlay-1) rounded-md
                 ${selected == opt && "bg-(--color-overlay-1)"}`}
               onClick={() => setSelected(opt)}
             >
