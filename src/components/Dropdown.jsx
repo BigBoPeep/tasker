@@ -45,14 +45,16 @@ export default function Dropdown({
             <div
               key={opt}
               className={`flex cursor-pointer py-1 px-2 overflow-hidden justify-between 
-                hover:bg-(--color-overlay-1) rounded-md
-                ${selected == opt && "bg-(--color-overlay-1)"}`}
+                hover:bg-(--color-overlay-1) rounded-md items-center
+                ${selected == opt && "bg-(--color-overlay-1) hover:bg-(--color-overlay-2)"}`}
               onClick={() => setSelected(opt)}
             >
               <p className="text-ellipsis overflow-hidden whitespace-nowrap">
                 {text}
               </p>
-              {selected == opt && <Check className="shrink-0" />}
+              <Check
+                className={`shrink-0 ${opt === selected ? "opacity-100" : "opacity-0"}`}
+              />
             </div>
           );
         })}

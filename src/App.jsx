@@ -16,11 +16,10 @@ function App() {
       <ModalRouter />
       <ToastList />
       <div className="bg-(--color-pri) h-dvh w-dvw flex flex-col overflow-hidden">
-        <div className="flex grow overflow-hidden">
+        <div className="flex grow overflow-hidden relative">
           <Sidebar
-            className={
-              "p-2 pt-4 shrink-0 h-full gap-4 border-r border-(--color-text)/20"
-            }
+            className={`p-2 pt-4 shrink-0 h-full gap-4 border-r border-(--color-text)/20 
+                bg-(--color-pri)`}
             open={sidebarOpen}
           >
             <button>

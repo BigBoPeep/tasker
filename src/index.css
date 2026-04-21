@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
 @import "tailwindcss";
 
 html {
@@ -6,7 +7,7 @@ html {
 
 @layer base {
   * {
-    @apply box-border;
+    @apply box-border text-0;
   }
 
   button {
@@ -44,6 +45,17 @@ html {
   }
 }
 
+@theme {
+  --text--2: clamp(0.6076rem, 0.5944rem + 0.0588vw, 0.64rem);
+  --text--1: clamp(0.7292rem, 0.7002rem + 0.1288vw, 0.8rem);
+  --text-0: clamp(0.875rem, 0.8239rem + 0.2273vw, 1rem);
+  --text-1: clamp(1.05rem, 0.9682rem + 0.3636vw, 1.25rem);
+  --text-2: clamp(1.26rem, 1.1363rem + 0.55vw, 1.5625rem);
+  --text-3: clamp(1.512rem, 1.3315rem + 0.802vw, 1.9531rem);
+  --text-4: clamp(1.8144rem, 1.5579rem + 1.14vw, 2.4414rem);
+  --text-5: clamp(2.1773rem, 1.8195rem + 1.59vw, 3.0518rem);
+}
+
 @theme inline {
   --color-pri: var(--color-olive-200);
   --color-sec: var(--color-neutral-600);
@@ -65,6 +77,8 @@ html {
   --ease-bounce: cubic-bezier(0.34, 1.26, 0.64, 1);
   --shadow-btn: inset 0 0 20px 0, 0 2px 2px 1px;
   --shadow-btn-hover: inset 0 0 20px 3px, 0 2px 2px 1px;
+
+  --default-font-family: "Nunito", var(--font-sans);
 }
 
 @media (prefers-color-scheme: dark) {

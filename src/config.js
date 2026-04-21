@@ -17,7 +17,11 @@ export const FILTERS = {
   overdue: "Overdue",
 };
 export const SORT_OPTIONS = {
+  created: "Created",
   deadline: "Deadline",
+  completed: "Completed",
+  overdue: "Overdue",
+  title: "Title",
 };
 export const SORT_ORDERS = {
   descending: "Descending",

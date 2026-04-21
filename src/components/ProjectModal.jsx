@@ -1,11 +1,15 @@
 import { useSignals } from "@preact/signals-react/runtime";
 import { useSignal } from "@preact/signals-react/runtime";
-import { addProject, updateProject, closeModal } from "../modules/store";
+import {
+  addProject,
+  updateProject,
+  closeModal,
+  addToast,
+} from "../modules/store";
 import { SquareCheckBig, OctagonX } from "lucide-react";
 import Tooltip from "./Tooltip";
 import Checkbox from "./Checkbox";
 import { format, isValid } from "date-fns";
-import { addToast } from "../modules/store";
 
 export default function ProjectModal({ data }) {
   useSignals();
@@ -23,7 +27,7 @@ export default function ProjectModal({ data }) {
       return;
     } else if (desc.value.length > 1000) {
       addToast(
-        "Project description must be less than 1000 characters",
+        "Project description must be 1000 characters or less",
         "warning",
       );
       return;

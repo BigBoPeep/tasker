@@ -23,7 +23,7 @@ export default function TaskControls() {
       <Tooltip content={"New Task"}>
         <button
           onClick={() => {
-            openModal("task");
+            openModal("task", { projectID: activeProjectID.value });
           }}
         >
           <ListPlus className="size-8" />

@@ -16,7 +16,7 @@ export default function ProjectView() {
   const project = projects.value[activeProjectID.value];
 
   return (
-    <div className="w-full h-full relative overflow-hidden">
+    <div className="w-full h-full flex flex-col relative overflow-hidden">
       <div className="w-full border-b p-2 border-(--color-text)/20">
         <div className="flex justify-between items-center">
           {project?.title}
@@ -43,7 +43,7 @@ export default function ProjectView() {
         </div>
       </div>
 
-      <TaskList className={"p-2"} />
+      <TaskList className={"p-2"} projectID={activeProjectID.value} />
     </div>
   );
 }

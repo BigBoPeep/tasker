@@ -24,6 +24,11 @@ export class Task {
     else return false;
   }
 
+  get incomplete() {
+    if (this.completed === false) return true;
+    else return false;
+  }
+
   toJSON() {
     return {
       id: this.id,

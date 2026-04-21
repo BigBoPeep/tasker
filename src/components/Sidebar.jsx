@@ -11,7 +11,7 @@ export default function Sidebar({ children, className, open }) {
     <div
       className={`absolute lg:static w-[min(400px,60dvw)] h-full right-full
         transition-transform duration-500 ease-bounce transform-gpu flex flex-col 
-        items-center gap-2 lg:translate-0
+        items-center gap-2 lg:translate-0 z-500
         ${open.value ? "translate-x-full" : "translate-0"} ${className}`}
     >
       <img
@@ -27,8 +27,9 @@ export default function Sidebar({ children, className, open }) {
       />
       {children}
       <button
-        className="absolute left-full top-[50%] lg:hidden z-100"
+        className="absolute left-full top-[50%] lg:hidden z-1000 rounded-l-none"
         onClick={() => {
+          console.log("hi");
           open.value = !open.value;
         }}
       >
