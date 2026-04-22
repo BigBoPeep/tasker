@@ -24,7 +24,7 @@ export default function ProjectView() {
           <span className="text-(--color-brand) text-3 font-bold">
             {project?.title}
           </span>
-          <CompletionBadge item={project} />
+          <CompletionBadge item={project} className={"size-10"} />
         </div>
         <div className="font-semibold">
           <span className="italic font-normal">{"Due: "}</span>

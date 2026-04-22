@@ -10,18 +10,18 @@ export default function CompletionBadge({ item, className }) {
         <Tooltip content={`Overdue by ${formatDistanceToNow(item.deadline)}`}>
           <div
             className="flex justify-center items-center p-[2px] rounded-full bg-(--color-overdue)/50
-            opacity-60"
+            opacity-60 size-full"
           >
-            <ClockAlert />
+            <ClockAlert className="size-full" />
           </div>
         </Tooltip>
       ) : item?.completed === false ? (
         <Tooltip content={"In Progress..."}>
           <div
             className="flex justify-center items-center p-[2px] rounded-full bg-(--color-inProgress)/50
-          opacity-60"
+          opacity-60 size-full"
           >
-            <ClockFading />
+            <ClockFading className="size-full" />
           </div>
         </Tooltip>
       ) : (
@@ -33,9 +33,9 @@ export default function CompletionBadge({ item, className }) {
         >
           <div
             className="flex justify-center items-center p-[2px] rounded-full bg-(--color-completed)/50
-          opacity-60"
+          opacity-60 size-full"
           >
-            <BadgeCheck />
+            <BadgeCheck className="size-full" />
           </div>
         </Tooltip>
       )}
