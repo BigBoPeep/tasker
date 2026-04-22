@@ -18,8 +18,10 @@ export default function ProjectView() {
   return (
     <div className="w-full h-full flex flex-col relative overflow-hidden">
       <div className="w-full border-b p-2 border-(--color-text)/20 bg-(--color-sec)">
-        <div className="flex justify-between items-center text-2 font-semibold">
-          {project?.title}
+        <div className="flex justify-between items-center">
+          <span className="text-(--color-brand) text-3 font-bold">
+            {project?.title}
+          </span>
           <CompletionBadge item={project} />
         </div>
         <div className="font-semibold">
@@ -29,7 +31,7 @@ export default function ProjectView() {
             settings.value.dateFormatDue,
           )}
         </div>
-        <div className="leading-tight h-15">{project?.desc}</div>
+        <div className="leading-tight h-15 font-normal">{project?.desc}</div>
         <div className="italic text--1">
           <span className="text--1">{"Created: "}</span>
           {format(

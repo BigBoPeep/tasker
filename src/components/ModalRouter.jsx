@@ -4,6 +4,7 @@ import WorkspaceModal from "./WorkspaceModal";
 import ProjectModal from "./ProjectModal";
 import TaskModal from "./TaskModal";
 import ConfirmModal from "./ConfirmModal";
+import SettingsModal from "./SettingsModal";
 
 export default function ModalRouter() {
   useSignals();
@@ -20,6 +21,8 @@ export default function ModalRouter() {
       <ProjectModal data={data} />
     ) : type === "task" ? (
       <TaskModal data={data} />
+    ) : type === "settings" ? (
+      <SettingsModal data={data} />
     ) : type === "confirm" ? (
       <ConfirmModal data={data} />
     ) : null;

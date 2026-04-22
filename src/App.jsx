@@ -5,7 +5,12 @@ import ProjectView from "./components/ProjectView";
 import Landing from "./components/Landing";
 import ModalRouter from "./components/ModalRouter";
 import ToastList from "./components/ToastList";
-import { addWorkspace, sidebarOpen, activeProjectID } from "./modules/store";
+import {
+  addWorkspace,
+  sidebarOpen,
+  activeProjectID,
+  openModal,
+} from "./modules/store";
 import { Cog } from "lucide-react";
 
 function App() {
@@ -22,7 +27,7 @@ function App() {
                 bg-(--color-pri)`}
             open={sidebarOpen}
           >
-            <button>
+            <button onClick={() => openModal("settings")}>
               <Cog />
               Settings
             </button>

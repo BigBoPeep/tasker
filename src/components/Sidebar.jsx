@@ -27,9 +27,8 @@ export default function Sidebar({ children, className, open }) {
       />
       {children}
       <button
-        className="absolute left-full top-[50%] lg:hidden z-1000 rounded-l-none"
+        className="absolute left-full top-[50%] lg:hidden z-1000 rounded-l-none opacity-30 hover:opacity-60"
         onClick={() => {
-          console.log("hi");
           open.value = !open.value;
         }}
       >

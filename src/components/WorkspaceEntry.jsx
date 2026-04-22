@@ -19,15 +19,15 @@ export default function WorkspaceEntry({ workspace }) {
         rounded-md"
     >
       <summary
-        className="flex justify-center items-center w-full overflow-hidden
+        className="flex justify-center items-center w-full overflow-hidden relative
         hover:bg-(--color-overlay-1) cursor-pointer rounded-md px-1 group/sum"
       >
         <p className="p-2 px-2 mx-auto">{workspace.title}</p>
         <ChevronRight className="rotate-180 group-open/ws:rotate-135 transition-transform duration-400" />
         <div
-          className="absolute flex inset-0 ml-auto mr-2 mt-2
+          className="absolute flex inset-0 ml-auto mr-2 my-auto
             h-fit w-fit scale-x-0 group-hover/sum:scale-x-100 origin-right 
-            transition-transform duration-300 ease-bounce"
+            transition-transform duration-300 ease-in-out"
         >
           <button
             className="opacity-50 hover:opacity-80"

@@ -48,7 +48,7 @@ export default function TaskList({ className, projectID }) {
     <div className={`overflow-hidden flex flex-col gap-2 grow ${className}`}>
       <TaskControls />
 
-      <div className="px-2 flex flex-col gap-4 grow max-h-full overflow-y-auto">
+      <div className="pr-4 flex flex-col gap-2 grow max-h-full overflow-y-auto">
         {tasksToShow.map((task) => (
           <TaskEntry key={task.id} task={task} />
         ))}
