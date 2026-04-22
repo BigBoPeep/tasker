@@ -7,17 +7,17 @@ export default function Landing() {
       <HeroSection
         className={"w-[min(800px,60dvw)]"}
         text={
-          <p className="text-4">
+          <span className="text-4">
             Welcome to{" "}
             <span className="text-(--color-brand) text-4">Tasker</span>!
-          </p>
+          </span>
         }
         subtext={
-          <p className="text-1 *:text-(--color-brand) *:font-light *:text-1 font-light">
+          <span className="text-1 *:text-(--color-brand) *:font-light *:text-1 font-light">
             Get more done by utilizing <span>Organization </span>
             and
             <span> Visualization</span>
-          </p>
+          </span>
         }
       >
         <ListTodo className="size-20 md:size-30 bg-(--color-pri) p-2 rounded-md stroke-(--color-brand)" />
@@ -65,7 +65,7 @@ export default function Landing() {
             clicking the Tasker logo in the sidebar.
           </p>
 
-          <p className="font-normal bg-(--color-pri) p-2 px-3 rounded-md">
+          <div className="font-normal bg-(--color-pri) p-2 px-3 rounded-md">
             <span className="text-1 font-semibold text-(--color-brand)">
               Workspaces{" "}
             </span>
@@ -74,12 +74,12 @@ export default function Landing() {
             its own self-contained set of goals. A Workspace could be a
             location, a client, a vehicle, a hobby, or anything else that groups
             related work together.
-            <p className="mt-2">
+            <div className="mt-2">
               — Create a new Workspace with the button in the menu sidebar.
-            </p>
-          </p>
+            </div>
+          </div>
 
-          <p className="font-normal bg-(--color-pri) p-2 px-3 rounded-md">
+          <div className="font-normal bg-(--color-pri) p-2 px-3 rounded-md">
             <span className="text-1 font-semibold text-(--color-brand)">
               Projects{" "}
             </span>
@@ -89,13 +89,13 @@ export default function Landing() {
             like 'Repaint the Kitchen' or 'Fix the Fence'. Inside a client
             workspace, a Project might be a specific deliverable or contract
             milestone.
-            <p className="mt-2">
+            <div className="mt-2">
               — Create a new Project using the button inside each Workspace in
               the sidebar.
-            </p>
-          </p>
+            </div>
+          </div>
 
-          <p className="font-normal bg-(--color-pri) p-2 px-3 rounded-md">
+          <div className="font-normal bg-(--color-pri) p-2 px-3 rounded-md">
             <span className="text-1 font-semibold text-(--color-brand)">
               Tasks{" "}
             </span>
@@ -104,12 +104,12 @@ export default function Landing() {
             a Project into Tasks makes large goals feel manageable and gives you
             a clear picture of your progress. A Task can have a deadline of its
             own, so nothing slips through the cracks.
-            <p className="mt-2">
+            <div className="mt-2">
               — Create a new Task by first selecting a Project. In the new view
               you'll find controls for filtering, sorting, and a button for
               adding a new Task.
-            </p>
-          </p>
+            </div>
+          </div>
         </div>
       </details>
     </div>

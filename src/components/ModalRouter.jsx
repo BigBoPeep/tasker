@@ -34,7 +34,7 @@ export default function ModalRouter() {
       onClick={closeModal}
     >
       <div
-        className={`rounded-lg w-96 transition-all duration-500 z-1000 
+        className={`rounded-lg w-[min(--spacing(96),90dvw)] transition-all duration-500 z-1000 
           ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"} transform-gpu`}
         onClick={(e) => e.stopPropagation()}
       >

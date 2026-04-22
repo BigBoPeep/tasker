@@ -24,7 +24,7 @@ function App() {
         <div className="flex grow overflow-hidden relative">
           <Sidebar
             className={`p-2 pt-4 shrink-0 h-full gap-4 border-r border-(--color-text)/20 
-                bg-(--color-pri)`}
+                bg-(--color-pri) w-[min(500px,80dvw)]`}
             open={sidebarOpen}
           >
             <button onClick={() => openModal("settings")}>

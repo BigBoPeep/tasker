@@ -9,7 +9,7 @@ export default function Sidebar({ children, className, open }) {
 
   return (
     <div
-      className={`absolute lg:static w-[min(400px,60dvw)] h-full right-full
+      className={`absolute lg:static h-full right-full
         transition-transform duration-500 ease-bounce transform-gpu flex flex-col 
         items-center gap-2 lg:translate-0 z-500
         ${open.value ? "translate-x-full" : "translate-0"} ${className}`}
