@@ -8,7 +8,8 @@ import {
   sidebarOpen,
 } from "../modules/store";
 import ProjectEntry from "./ProjectEntry";
-import { Trash2, ChevronRight, DiamondPlus } from "lucide-react";
+import Tooltip from "./Tooltip";
+import { Trash2, ChevronRight, DiamondPlus, PencilLine } from "lucide-react";
 
 export default function WorkspaceEntry({ workspace }) {
   useSignals();
@@ -24,23 +25,6 @@ export default function WorkspaceEntry({ workspace }) {
       >
         <p className="p-2 px-2 mx-auto">{workspace.title}</p>
         <ChevronRight className="rotate-180 group-open/ws:rotate-135 transition-transform duration-400" />
-        <div
-          className="absolute flex inset-0 ml-auto mr-2 my-auto
-            h-fit w-fit scale-x-0 group-hover/sum:scale-x-100 origin-right 
-            transition-transform duration-300 ease-in-out"
-        >
-          <button
-            className="opacity-50 hover:opacity-80"
-            onClick={() =>
-              openModal("confirm", {
-                title: "Delete Workspace",
-                action: () => deleteWorkspace(workspace.id),
-              })
-            }
-          >
-            <Trash2 className="size-5" />
-          </button>
-        </div>
       </summary>
       <div className="p-1 pb-2 flex flex-col items-center gap-2">
         <div className="w-full px-2">
@@ -60,12 +44,41 @@ export default function WorkspaceEntry({ workspace }) {
             },
           )}
         </div>
-        <button
-          onClick={() => openModal("project", { workspaceID: workspace.id })}
-        >
-          <DiamondPlus />
-          New Project
-        </button>
+        <div className="flex gap-4 my-1">
+          <Tooltip content={"Edit Workspace"}>
+            <button
+              onClick={() =>
+                openModal("workspace", {
+                  id: workspace.id,
+                  title: workspace.title,
+                })
+              }
+            >
+              <PencilLine />
+            </button>
+          </Tooltip>
+          <Tooltip content={"Delete Workspace"}>
+            <button
+              onClick={() =>
+                openModal("confirm", {
+                  title: "Delete Workspace",
+                  action: () => deleteWorkspace(workspace.id),
+                })
+              }
+            >
+              <Trash2 />
+            </button>
+          </Tooltip>
+          <Tooltip content={"New Project"}>
+            <button
+              onClick={() =>
+                openModal("project", { workspaceID: workspace.id })
+              }
+            >
+              <DiamondPlus />
+            </button>
+          </Tooltip>
+        </div>
       </div>
     </details>
   );

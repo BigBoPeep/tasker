@@ -23,7 +23,10 @@ export default function Landing() {
         <ListTodo className="size-20 md:size-30 bg-(--color-pri) p-2 rounded-md stroke-(--color-brand)" />
       </HeroSection>
 
-      <div className="bg-(--color-sec) p-4 flex flex-col gap-4 max-w-prose text-center text-balance">
+      <div
+        className="bg-(--color-sec) p-4 flex flex-col gap-4 max-w-prose text-center 
+          text-balance rounded-md"
+      >
         <p className="bg-(--color-pri) p-2 px-6 rounded-md">
           Most productivity apps make you think like they do. Rigid systems,
           overwhelming features, and workflows designed for someone else. Tasker
@@ -34,8 +37,8 @@ export default function Landing() {
           <span> places</span> you go, the <span>people</span> you work with,
           and the <span>things</span> you're building. Whether you're managing a
           job site, juggling clients, or just trying to get the house in order,{" "}
-          <span>Tasker</span> fits around your life instead of the other way
-          around.
+          <span>Tasker</span> fits around <span>your life</span> instead of the
+          other way around.
         </p>
         <p className="bg-(--color-pri) p-2 px-6 rounded-md *:text-(--color-brand)">
           <span>Everything</span> in one place. <span>Nothing</span> you don't

@@ -14,14 +14,16 @@ export default function WorkspaceModal({ data }) {
       addToast("Workspace name must be at least three characters", "warning");
       return;
     }
-    data ? updateWorkspace(data.id, title.value) : addWorkspace(title.value);
+    data?.id
+      ? updateWorkspace(data.id, title.value)
+      : addWorkspace(title.value);
     closeModal();
   }
 
   return (
     <div className="fixed inset-0 flex items-center justify-center">
       <div className="bg-(--color-pri) rounded-lg p-4 w-12/12 flex flex-col gap-4">
-        <h2>{data ? "Edit Workspace" : "New Workspace"}</h2>
+        <h2>{data?.id ? "Edit Workspace" : "New Workspace"}</h2>
         <input
           className="w-full"
           value={title.value}

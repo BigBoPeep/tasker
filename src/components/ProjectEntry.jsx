@@ -10,25 +10,12 @@ export default function ProjectEntry({ project, onClick }) {
       onClick={onClick}
     >
       {project.title}
-      <div
-        className="absolute origin-bottom scale-y-0 group-hover/pe:scale-y-100 
-          flex w-full px-2 justify-between inset-0 h-fit my-auto 
-          transition-transform duration-300 ease-bounce"
-      >
-        {project.overdue && <CompletionBadge item={project} />}
-        <button
-          className="opacity-50 hover:opacity-80"
-          onClick={(e) => {
-            e.stopPropagation();
-            openModal("confirm", {
-              title: "Delete Project",
-              action: () => deleteProject(project.id),
-            });
-          }}
-        >
-          <Trash2 className="size-5" />
-        </button>
-      </div>
+      {project.overdue && (
+        <CompletionBadge
+          item={project}
+          className={"absolute inset-0 w-fit h-fit my-auto ml-2"}
+        />
+      )}
     </div>
   );
 }

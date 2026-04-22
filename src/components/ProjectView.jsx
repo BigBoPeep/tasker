@@ -5,8 +5,10 @@ import {
   projects,
   tasksByProject,
   settings,
+  openModal,
+  deleteProject,
 } from "../modules/store";
-import { BadgeInfo, BadgeCheck, BadgeAlert } from "lucide-react";
+import { Trash2, PencilLine } from "lucide-react";
 import Tooltip from "./Tooltip";
 import TaskList from "./TaskList";
 import CompletionBadge from "./CompletionBadge";
@@ -17,7 +19,7 @@ export default function ProjectView() {
 
   return (
     <div className="w-full h-full flex flex-col relative overflow-hidden">
-      <div className="w-full border-b p-2 border-(--color-text)/20 bg-(--color-sec)">
+      <div className="w-full border-b p-2 px-4 border-(--color-text)/20 bg-(--color-sec)">
         <div className="flex justify-between items-center">
           <span className="text-(--color-brand) text-3 font-bold">
             {project?.title}
@@ -32,12 +34,33 @@ export default function ProjectView() {
           )}
         </div>
         <div className="leading-tight h-15 font-normal">{project?.desc}</div>
-        <div className="italic text--1">
-          <span className="text--1">{"Created: "}</span>
-          {format(
-            project?.created || new Date(),
-            settings.value.dateFormatCreated,
-          )}
+        <div className="italic text--1 flex justify-between items-center">
+          <p className="text--1">
+            <span className="text--1">{"Created: "}</span>
+            {format(
+              project?.created || new Date(),
+              settings.value.dateFormatCreated,
+            )}
+          </p>
+          <div className="flex gap-4">
+            <Tooltip content={"Edit Project"}>
+              <button onClick={() => openModal("project", { ...project })}>
+                <PencilLine />
+              </button>
+            </Tooltip>
+            <Tooltip content={"Delete Project"}>
+              <button
+                onClick={() =>
+                  openModal("confirm", {
+                    title: "Delete Project",
+                    action: () => deleteProject(project.id),
+                  })
+                }
+              >
+                <Trash2 />
+              </button>
+            </Tooltip>
+          </div>
         </div>
       </div>
 
