@@ -36,7 +36,24 @@ function App() {
           {activeProjectID.value ? <ProjectView /> : <Landing />}
         </div>
         <footer className="border-t border-(--color-text)/20 text-center p-0.5">
-          Copyright © 2026 Lane Robey
+          {`Copyright © 2026 `}
+          <a
+            className="text-(--color-brand)"
+            href="http://www.linkedin.com/in/bigbopeep"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Lane Robey
+          </a>
+          {` | Icons from `}
+          <a
+            className="text-(--color-brand)"
+            href="http://lucide.dev"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Lucide
+          </a>
         </footer>
       </div>
     </>

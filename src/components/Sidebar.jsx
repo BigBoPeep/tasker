@@ -3,6 +3,7 @@ import { useSignal } from "@preact/signals-react";
 import { useSignals } from "@preact/signals-react/runtime";
 import { activeProjectID } from "../modules/store";
 import { SidebarOpen, SidebarClose } from "lucide-react";
+import logoURL from "../assets/logo.webp";
 
 export default function Sidebar({ children, className, open }) {
   useSignals();
@@ -15,7 +16,7 @@ export default function Sidebar({ children, className, open }) {
         ${open.value ? "translate-x-full" : "translate-0"} ${className}`}
     >
       <img
-        src="/logo.webp"
+        src={logoURL}
         alt="Tasker Logo"
         className="bg-(--color-btn) w-40 lg:w-64 p-2 rounded-md 
                 shadow-btn hover:shadow-btn-hover shadow-black/20 outline-1 

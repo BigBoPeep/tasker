@@ -6,6 +6,7 @@ import {
   closeModal,
   addToast,
   settings,
+  tasks,
 } from "../modules/store";
 import { format, isValid } from "date-fns";
 import Tooltip from "./Tooltip";
@@ -49,7 +50,8 @@ export default function TaskModal({ data }) {
           completed.value,
           data.projectID,
         );
-    mode.value = "view";
+    if (mode.value === "new") closeModal();
+    else mode.value = "view";
   }
 
   return (
@@ -64,7 +66,10 @@ export default function TaskModal({ data }) {
               >
                 {title}
               </h2>
-              <CompletionBadge item={data} className={"size-10"} />
+              <CompletionBadge
+                item={tasks.value[data.id]}
+                className={"size-10"}
+              />
             </div>
             <p className="py-1 p-2 rounded-md bg-(--color-sec) leading-tight">
               <span className="italic font-light">{"Due: "}</span>

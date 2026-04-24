@@ -79,9 +79,9 @@ html {
   --color-input: #faf8f5;
   --color-btn: #4a7c59;
 
-  --color-overdue: var(--color-red-800);
+  --color-overdue: var(--color-orange-600);
   --color-inProgress: var(--color-olive-600);
-  --color-completed: var(--color-green-800);
+  --color-completed: var(--color-lime-600);
 
   --color-overlay-1: rgb(0, 0, 0, 0.15);
   --color-overlay-2: rgb(0, 0, 0, 0.25);
@@ -107,6 +107,8 @@ html {
   --color-input: #faf8f5;
   --color-btn: #4a7c59;
 
+  --color-completed: var(--color-lime-600);
+
   @media (prefers-color-scheme: dark) {
     --color-pri: #1a2219;
     --color-sec: #222d21;
@@ -128,6 +130,8 @@ html {
   --color-tooltip-text: #ffffff;
   --color-input: #f8f9fc;
   --color-btn: #3b5bdb;
+
+  --color-overdue: var(--color-orange-700);
 
   @media (prefers-color-scheme: dark) {
     --color-pri: #0f1117;
@@ -204,5 +208,7 @@ html {
     --color-tooltip-text: #f0a090;
     --color-input: #0e0504;
     --color-btn: #8a2a20;
+
+    --color-overdue: var(--color-rose-600);
   }
 }
